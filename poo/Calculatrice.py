@@ -1,41 +1,67 @@
 # -*- coding: utf-8 -*-
-from tkinter import Tk, Label, Button, Frame, StringVar
-from tkinter import LEFT, RIGHT, BOTTOM, TOP
+from CalculatriceUI import CalculatriceUI
 
-class Calculatrice:
+
+class Calculatrice(CalculatriceUI):
     def __init__(self):
-        self.fen = Tk()
-        self.chaine = StringVar()
-        self.chaine.set("0")
-        
-        self.label = Label(self.fen, textvariable=self.chaine, height=2)
-        self.label.pack()
-        
-        self.button_valider = Button(self.fen, text="valider", height=2)
-        self.button_valider.pack(side=BOTTOM, expand=True, fill="x")
-        
-        self.frame_op = Frame(fen)
-        self.frame_op.pack(side=RIGHT)
-        
-        for op in ['+','-','*','/']:
-            button = Button(self.frame_op, text=op, width=5, height=2)
-            button.pack()
-        
-        self.frame = Frame(self.fen)
-        self.frame.pack()
-        for i in range(3):
-            for j in range(3):
-                button = Button(self.frame, text=f"{3*(2-i)+j+1}", width=5, height=2)
-                button.grid(column=j, row=i)
-                button.bind("<Button-1>", self.handle_number)
-        
-        self.button_zero = Button(self.fen, text="0", height=2)
-        self.button_zero.pack(expand=True, fill="x")
-        
-        self.fen.mainloop()
+        CalculatriceUI.__init__(self)
+        self.operand1 = 0
+        self.operand2 = 0
+        self.operator = '+'
+
+    def handle_validate(self, e):
+        """
+            Gère le click sur le bouton valider
+            Afficher operand1 + operand2 si self.operator == '+'
+            Afficher operand1 - operand2 si self.operator == '-'
+            Afficher operand1 * operand2 si self.operator == '*'
+            Afficher operand1 / operand2 si self.operator == '/'
+        """
+        self.operand2 = int(self.chaine.get())
+        if self.operator == "+":
+            self.chaine.set(str(self.operand1 + self.operand2))
+        elif self.operator == "-":
+            self.chaine.set(str(self.operand1 - self.operand2))
+        elif self.operator == "*":
+            self.chaine.set(str(self.operand1 * self.operand2))
+        elif self.operator == "/":
+            self.chaine.set(str(self.operand1 // self.operand2))
 
     def handle_number(self, e):
         """
             Gère le click sur un bouton numérique
         """
-        pass
+        self.chaine.set(self.chaine.get() + e.widget.cget("text"))
+
+    def handle_op(self, e):
+        """
+            Gère le click sur un bouton opérateur
+            mettre l'opérateur dans self.operator
+            mettre l'affichage courant dans self.operand1
+            reset l'affichage : self.chaine...
+        """
+        self.operator = e.widget.cget("text")
+        self.operand1 = int(self.chaine.get())
+        self.chaine.set("")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

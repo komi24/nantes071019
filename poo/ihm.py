@@ -2,3 +2,4 @@
 
 from Calculatrice import Calculatrice
 
+calc = Calculatrice()
