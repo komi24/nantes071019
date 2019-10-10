@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
+from random import randint as rd
+
 
 class Pompier:
-    def __init__(self, position, board):
-        self.position = position
+    def __init__(self, board):
+        self.position = [rd(0,10), rd(0,10)]
         self.occupe = 0
         self.board = board
     def se_deplacer(self, feu):
@@ -30,13 +32,9 @@ class Pompier:
                 self.position[1] -= 1
             else:
                 self.occupe = 5
+                self.board.eteindre(feu)
         else:
             self.occupe -= 1
-            if self.occupe == 0:
-                """
-                    Il faut éteindre le feu
-                """
-                self.board.eteindre(feu)
             
         
         print(self.position)
