@@ -19,6 +19,13 @@ class Personne:
     def __repr__(self):
         return f"Je m'appelle : {self.nom}."
     
+    def __lt__(self, autre):
+#        return self.age < autre.age
+        return self.compte.solde < autre.compte.solde
+
+    def __eq__(self, autre):
+#        return self.age == autre.age
+        return self.compte.solde == autre.compte.solde
         
 """
     Classe Compte qui a en attribut (self.quelquechose) "solde"

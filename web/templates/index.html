@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Association de voisinage</title>
+   <!-- Compiled and minified CSS -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+   <!-- Compiled and minified JavaScript -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+           
+</head>
+<body>
+  <nav>
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo">Mon Association de voisinage</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="sass.html">Sass</a></li>
+          <li><a href="badges.html">Components</a></li>
+          <li><a href="collapsible.html">JavaScript</a></li>
+        </ul>
+      </div>
+    </nav>
+  <h2>Acceuil des parisiens</h2>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim sint odio molestiae reprehenderit accusantium distinctio exercitationem, praesentium nemo recusandae modi velit nostrum delectus neque laboriosam maiores consequuntur voluptatibus ipsum earum!</p>
+
+  <div class="row">
+    <form class="col s12" action="/form" method="POST">
+      <div class="row">
+        <div class="input-field col s6">
+          <input name="task" placeholder="Ecrivez une nouvelle tache..." id="task" type="text" class="validate">
+          <label for="task">Tache</label>
+        </div>
+      </div>
+      <input type="submit" value="valider" class="btn"/>
+    </form>
+  </div>
+
+  <div class="row">
+    {% for task in ma_liste %}
+    <div class="col s12 m3">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">Tache {{ loop.index }}</span>
+          <p>{{task }}</p>
+        </div>
+        <div class="card-action">
+          <a href="#">This is a link</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+</body>
+</html>
