@@ -10,3 +10,8 @@
 * Flask : Micro service / API web
 * Design Pattern : https://blog.ploeh.dk/2017/10/04/from-de
 sign-patterns-to-category-theory/
+
+## Pratique du code
+* Kaggle
+* HackerRank
+* CodeWars
