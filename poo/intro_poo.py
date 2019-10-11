@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 
+class NegativeValueException(Exception):
+    pass
+
+
 """
     1- Rajouter un compte dans la classe personne
     2- Ajouter une méthode transfert(self, autre_personne, montant)
@@ -36,21 +40,31 @@ class Compte:
     def __init__(self, solde_initial):
         self.solde = solde_initial
     def depot(self, montant):
+        if montant < 0:
+            raise NegativeValueException()
         self.solde += montant
     def retrait(self, montant):
+        assert type(montant) == float or type(montant) == int, "Le montant "
+        assert montant > 0, "Le montant doit être positif"
         self.solde -= montant
 
 un_compte = Compte(1000)
 un_compte.depot(500)
 un_compte.retrait(500)
 
-
-une_personne = Personne("Marjorie", 32)
-une_personne.dire_bonjour()
-une_deuxieme_personne = Personne("Isabelle", 80)
-une_deuxieme_personne.dire_bonjour()
-
-une_personne.transfert(une_deuxieme_personne, 200)
+try:
+    une_personne = Personne("Marjorie", 32)
+    une_personne.dire_bonjour()
+    une_deuxieme_personne = Personne("Isabelle", 80)
+    une_deuxieme_personne.dire_bonjour()
+    
+    une_personne.transfert(une_deuxieme_personne, -200)
+except NegativeValueException as e:
+    print("Une erreur est survenue")
+except AssertionError:
+    print("Erreur d'assertion")
+except:
+    print("N'importe quelle erreur")
 
 print(une_personne.nom)
 print(une_deuxieme_personne.nom)
